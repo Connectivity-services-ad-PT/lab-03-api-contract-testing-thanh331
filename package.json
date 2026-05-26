@@ -3,10 +3,11 @@
   "version": "0.3.0",
   "private": true,
   "description": "FIT4110 Lab 03 - Postman, Mock Server, Contract Testing, Newman CI",
-  "scripts": {
+"scripts": {
     "mock:analytics": "prism mock contracts/analytics.openapi.yaml --port 4010",
     "mock:iot_dependency": "prism mock contracts/iot-ingestion.openapi.yaml --port 4011",
     "lint:contract": "npx @stoplight/spectral-cli lint contracts/analytics.openapi.yaml",
+    "lint:contracts": "npx @stoplight/spectral-cli lint contracts/analytics.openapi.yaml",
     "test:mock": "npx newman run postman/collections/analytics.postman_collection.json -e postman/environments/analytics_mock.postman_environment.json -r cli,junit,htmlextra --reporter-htmlextra-export reports/newman-report.html --reporter-junit-export reports/newman-report.xml"
   },
   "devDependencies": {
