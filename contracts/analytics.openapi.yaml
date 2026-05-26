@@ -36,6 +36,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HealthStatus'
+        '500':
+          description: Lỗi hệ thống nội bộ từ phía nhà cung cấp dịch vụ
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
 
   /api/v1/analytics/summary:
     get:
@@ -263,6 +269,8 @@ components:
           example: "Invalid Input Parameters"
         status:
           type: integer
+          minimum: 400
+          maximum: 599
           example: 400
         detail:
           type: string
