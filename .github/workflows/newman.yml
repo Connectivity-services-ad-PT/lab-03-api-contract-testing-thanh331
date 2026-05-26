@@ -20,9 +20,9 @@ jobs:
 
       - name: Run Mock Servers and Newman Tests
         run: |
-          nohup npm run mock:analytics > prism1.log 2>&1 &
-          nohup npm run mock:iot_dependency > prism2.log 2>&1 &
-          npx wait-on http://localhost:4010/health http://localhost:4011/health --timeout 30000
+          npx @stoplight/prism-cli mock contracts/analytics.openapi.yaml -p 4010 > prism1.log 2>&1 &
+          npx @stoplight/prism-cli mock contracts/iot-ingestion.openapi.yaml -p 4011 > prism2.log 2>&1 &
+          npx wait-on http-get://localhost:4010/health http-get://localhost:4011/health --timeout 30000
           npm run test:mock
 
       - name: Show Prism logs on failure
